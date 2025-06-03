@@ -1,30 +1,31 @@
+function askQuestion() {
+  const userQuestion = document.getElementById("question").value;
+  document.getElementById("response").innerHTML = "<em>Loading...</em>";
 
-async function sendToChatGPT() {
-    const userInput = document.getElementById("userInput").value;
-    const responseArea = document.getElementById("responseArea");
+  tableau.extensions.initializeAsync().then(() => {
+    const worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
+    worksheet.getSummaryDataAsync().then((summaryData) => {
+      const data = summaryData.data.map(row => 
+        row.map(cell => cell.formattedValue).join(", ")
+      ).join("\n");
 
-    const apiKey = prompt("Enter your OpenAI API key:");
+      const payload = {
+        question: userQuestion,
+        dashboardData: data
+      };
 
-    const headers = {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`
-    };
-
-    const body = JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [{ role: "user", content: userInput }]
+      fetch("http://localhost:5000/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(json => {
+        document.getElementById("response").innerText = json.answer;
+      })
+      .catch(err => {
+        document.getElementById("response").innerText = "Error: " + err.message;
+      });
     });
-
-    try {
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: "POST",
-            headers: headers,
-            body: body
-        });
-
-        const data = await response.json();
-        responseArea.textContent = data.choices[0].message.content;
-    } catch (error) {
-        responseArea.textContent = "Error: " + error.message;
-    }
+  });
 }
