@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ExtensionManifest xmlns="http://tableau.com/xml/extension_manifest">
+  <Extension id="chatgpt-extension" version="1.0.0">
+    <Name>ChatGPT Extension</Name>
+    <Description>Ask questions directly to ChatGPT from your dashboard</Description>
+    <Author>
+      <Name>Your Name</Name>
+      <Email>you@example.com</Email>
+    </Author>
+    <StartupScript>index.html</StartupScript>
+  </Extension>
+</ExtensionManifest>
