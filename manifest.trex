@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ExtensionManifest
-  xmlns="http://tableau.com/2018/extension-manifest"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://tableau.com/2018/extension-manifest https://tableau.github.io/extensions-schema/2021/extension-manifest.xsd"
-  schemaVersion="1.0">
+<manifest manifest-version="0.1"
+  xmlns="http://www.tableau.com/xml/extension_manifest">
 
-  <Extension id="chatgpt-extension" version="1.0.0">
-    <Name>ChatGPT Dashboard Assistant</Name>
-    <Description>Ask ChatGPT about your Tableau dashboard data</Description>
-    <Author>
-      <Name>Gino Villasotes</Name>
-      <Email>you@example.com</Email>
-      <Company>Personal Project</Company>
-    </Author>
+  <dashboard-extension id="com.gvillasotes.chatgpt" extension-version="1.0.0">
+    <default-locale>en_US</default-locale>
+    <name resource-id="name"/>
+    <description>ChatGPT Assistant for Tableau Dashboards</description>
 
-    <HomepageUrl>https://gvillasotes.github.io/tableau_chatgpt_extension/index.html</HomepageUrl>
+    <author
+      name="Gino Villasotes"
+      email="you@example.com"
+      organization="Personal Project"
+      website="https://github.com/gvillasotes"
+    />
 
-    <SourceLocation>
-      <Url>https://gvillasotes.github.io/tableau_chatgpt_extension/index.html</Url>
-    </SourceLocation>
+    <min-api-version>1.0</min-api-version>
 
-    <Scripts>
-      <Script>script.js</Script>
-    </Scripts>
+    <source-location>
+      <url>https://gvillasotes.github.io/tableau_chatgpt_extension/</url>
+    </source-location>
 
-    <Permissions>
-      <Scope>Read</Scope>
-    </Permissions>
-  </Extension>
-</ExtensionManifest>
+    <icon></icon>
+
+  </dashboard-extension>
+
+  <resources>
+    <resource id="name">
+      <text locale="en_US">ChatGPT Assistant</text>
+      <text locale="fr_BE">ChatGPT Assistant</text>
+      <text locale="de_DE">ChatGPT Assistant</text>
+    </resource>
+  </resources>
+</manifest>
