@@ -1,31 +1,23 @@
 function askQuestion() {
-  const userQuestion = document.getElementById("question").value;
-  document.getElementById("response").innerHTML = "<em>Loading...</em>";
+  const question = document.getElementById("question").value;
+  const responseDiv = document.getElementById("response");
+  responseDiv.innerText = "Thinking...";
 
   tableau.extensions.initializeAsync().then(() => {
     const worksheet = tableau.extensions.dashboardContent.dashboard.worksheets[0];
-    worksheet.getSummaryDataAsync().then((summaryData) => {
-      const data = summaryData.data.map(row => 
+    worksheet.getSummaryDataAsync().then(dataTable => {
+      const data = dataTable.data.map(row => 
         row.map(cell => cell.formattedValue).join(", ")
       ).join("\n");
-
-      const payload = {
-        question: userQuestion,
-        dashboardData: data
-      };
 
       fetch("http://localhost:5000/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({ question, dashboardData: data })
       })
       .then(res => res.json())
-      .then(json => {
-        document.getElementById("response").innerText = json.answer;
-      })
-      .catch(err => {
-        document.getElementById("response").innerText = "Error: " + err.message;
-      });
+      .then(json => responseDiv.innerText = json.answer)
+      .catch(err => responseDiv.innerText = "Error: " + err.message);
     });
   });
 }
