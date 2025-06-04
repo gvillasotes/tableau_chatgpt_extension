@@ -1,16 +1,19 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ExtensionManifest xmlns="http://tableau.com/2018/extension-manifest">
+<?xml version="1.0" encoding="utf-8"?>
+<ExtensionManifest xmlns="http://tableau.com/2018/extension-manifest" schemaVersion="1.0">
   <Extension id="chatgpt-extension" version="1.0.0">
     <Name>ChatGPT Dashboard Assistant</Name>
     <Description>Ask ChatGPT questions about the dashboard data</Description>
     <Author>
-      <Name>Your Name</Name>
+      <Name>Gino Villasotes</Name>
       <Email>you@example.com</Email>
       <Company>Personal</Company>
     </Author>
-    <HomepageUrl>https://yourusername.github.io/tableau-gpt-extension/index.html</HomepageUrl>
+    <HomepageUrl>https://gvillasotes.github.io/tableau_chatgpt_extension/index.html</HomepageUrl>
+    <SourceLocation>
+      <Url>https://gvillasotes.github.io/tableau_chatgpt_extension/index.html</Url>
+    </SourceLocation>
     <Scripts>
-      <Script>index.html</Script>
+      <Script>script.js</Script>
     </Scripts>
     <Permissions>
       <Scope>Read</Scope>
