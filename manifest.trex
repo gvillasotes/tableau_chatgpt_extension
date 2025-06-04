@@ -7,8 +7,7 @@
 
   <Extension id="chatgpt-extension" version="1.0.0">
     <Name>ChatGPT Dashboard Assistant</Name>
-    <Description>Ask ChatGPT questions about the dashboard data shown in Tableau</Description>
-
+    <Description>Ask ChatGPT about your Tableau dashboard data</Description>
     <Author>
       <Name>Gino Villasotes</Name>
       <Email>you@example.com</Email>
