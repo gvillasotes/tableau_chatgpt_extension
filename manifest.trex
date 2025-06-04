@@ -4,14 +4,15 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://tableau.com/2018/extension-manifest https://tableau.github.io/extensions-schema/2021/extension-manifest.xsd"
   schemaVersion="1.0">
-  
+
   <Extension id="chatgpt-extension" version="1.0.0">
     <Name>ChatGPT Dashboard Assistant</Name>
-    <Description>Ask ChatGPT questions about the dashboard data</Description>
+    <Description>Ask ChatGPT questions about the dashboard data shown in Tableau</Description>
+
     <Author>
       <Name>Gino Villasotes</Name>
       <Email>you@example.com</Email>
-      <Company>Personal</Company>
+      <Company>Personal Project</Company>
     </Author>
 
     <HomepageUrl>https://gvillasotes.github.io/tableau_chatgpt_extension/index.html</HomepageUrl>
