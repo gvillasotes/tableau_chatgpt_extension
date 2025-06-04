@@ -1,14 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>ChatGPT Dashboard Assistant</title>
-  <script src="https://public.tableau.com/javascripts/api/tableau.extensions.1.latest.js"></script>
-  <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <title>ChatGPT Tableau Extension</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f8f8f8;
+    }
+    h1 {
+      font-size: 20px;
+    }
+    #chat-box {
+      width: 100%;
+      height: 200px;
+      padding: 10px;
+      margin-top: 10px;
+      background: #ffffff;
+      border: 1px solid #ccc;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    #input-box {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    #ask-button {
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h3>Ask ChatGPT about your dashboard</h3>
-  <textarea id="question" rows="4" cols="50" placeholder="Ask your question..."></textarea>
-  <button onclick="askQuestion()">Ask</button>
-  <pre id="response"></pre>
+  <h1>Ask ChatGPT about this Dashboard</h1>
+
+  <textarea id="input-box" rows="3" placeholder="Type your question here..."></textarea><br>
+  <button id="ask-button">Ask</button>
+
+  <div id="chat-box">🤖 ChatGPT will respond here.</div>
+
+  <script>
+    document.getElementById("ask-button").addEventListener("click", async () => {
+      const input = document.getElementById("input-box").value;
+      const chatBox = document.getElementById("chat-box");
+
+      if (!input.trim()) return;
+
+      chatBox.innerText = "Thinking...";
+
+      try {
+        const response = await fetch("http://localhost:5000/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            question: input,
+            dashboardData: {}  // You can later add tableau data here
+          })
+        });
+
+        const data = await response.json();
+        chatBox.innerText = data.answer || "No response received.";
+      } catch (error) {
+        chatBox.innerText = "❌ Error contacting backend.";
+        console.error("Fetch error:", error);
+      }
+    });
+  </script>
 </body>
 </html>
